@@ -110,7 +110,7 @@
         <section>
             <h2>Nesting ></h2>
             <h4>Example</h4>
-            <p>ul>li>a 🔁</p>
+            <p>ul>li>a ↔️</p>
             <h4>Result</h4>
             <xmp>
 <ul>
@@ -122,7 +122,7 @@
         <section>
             <h2>Silbing +</h2>
             <h4>Example</h4>
-            <p>section+header+nav 🔁</p>
+            <p>section+header+nav ↔️</p>
             <h4>Result</h4>
             <xmp>
 <section></section>
@@ -134,7 +134,7 @@
         <section>
             <h2>Repeat *</h2>
             <h4>Example</h4>
-            <p>ul>li*3 🔁</p>
+            <p>ul>li*3 ↔️</p>
             <h4>Result</h4>
             <xmp>
 <ul>
@@ -143,6 +143,38 @@
     <li></li>
 </ul>
             </xmp>
+        </section>
+
+        <section>
+            <h2>Class ></h2>
+            <h4>Example</h4>
+            <p>div.contenedor ↔️<br>
+                .contenedor2 ↔️
+            </p>
+            <h4>Result</h4>
+<xmp>
+<div class="contenedor"></div>
+</xmp>
+        </section>
+        <section>
+            <h2>Multiple Classes ></h2>
+            <h4>Example</h4>
+            <p>div.clase1.clase2.clasen ↔️
+            </p>
+            <h4>Result</h4>
+<xmp>
+<div class="clase1 clase2 clasen"></div>
+</xmp>
+        </section>
+        <section>
+            <h2>Attribute Identifier ></h2>
+            <h4>Example</h4>
+            <p>nav#menu ↔️
+            </p>
+            <h4>Result</h4>
+<xmp>
+<nav id="menu"></nav>
+</xmp>
         </section>
     </main>
 
