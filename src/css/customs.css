@@ -1,0 +1,29 @@
+section {
+    article {
+        font-size: 6rem;
+        background: linear-gradient(to right, #fc5000, #f7000062);
+        border-radius: 50%;
+        color: #f35f32;
+        margin: 2rem auto;
+        display: flex;
+        height: 300px;
+        width: 300px;
+        justify-content: center;
+        align-items: center;
+        text-shadow: 0.2px #fff;
+
+        &:hover {
+            cursor: pointer;
+            animation: 1.8s animArticle ease-in infinite;
+        }
+    }
+}
+
+@keyframes animArticle {
+    0%,100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}

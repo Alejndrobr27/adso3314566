@@ -18,5 +18,17 @@
             <h2>Inserts JavaScript code.</h2>
         </header>
         <section>
-
+                <h3>JavaScript</h3>
+                <H4 class="user"></H4>
         </section>
+        </main>
+        <script>
+            const user = document.querySelector('.user')
+            const answer = prompt('What´s your name?');
+            if(answer) {
+                user.textContent = 'Welcome: 😎' + answer;
+            } else {
+                user.textContent = 'Welcome: 😑 Guest!';
+            }
+        </script>
+        </body>
