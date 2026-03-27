@@ -6,17 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>11-Forms</title>
     <link rel="stylesheet" href="../src/css/02-html.css">
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        main {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            padding: 6px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
     <a href="/02-html/index.html" class="btn-home">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+            <path
+                d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z">
+            </path>
+        </svg>
     </a>
+
     <main>
         <header>
             <h1>11-Forms</h1>
-            <h2>Creates interactive forms for user input. </h2>
+            <h2>Formulario de Registro Básico</h2>
         </header>
-        <section>
 
+        <section>
+            <form>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
+
+                <label for="correo">Correo</label>
+                <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com">
+
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="contrasena" placeholder="Escribe tu contraseña">
+
+                <label for="confirmar">Confirmar Contraseña</label>
+                <input type="password" id="confirmar" name="confirmar" placeholder="Repite tu contraseña">
+
+                <label for="tipo">Tipo de usuario</label>
+                <select id="tipo" name="tipo">
+                    <option value="">Selecciona una opción</option>
+                    <option value="estudiante">Estudiante</option>
+                    <option value="profesional">Profesional</option>
+                    <option value="otro">Otro</option>
+                </select>
+
+                <div class="buttons">
+                    <input type="submit" value="Registrarse">
+                    <input type="reset" value="Resetear">
+                </div>
+            </form>
         </section>
+    </main>
+</body>
+
+</html>
