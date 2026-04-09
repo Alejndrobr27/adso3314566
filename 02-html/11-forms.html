@@ -59,40 +59,110 @@
     </a>
 
     <main>
-        <header>
-            <h1>11-Forms</h1>
-            <h2>Formulario de Registro Básico</h2>
-        </header>
+    <header>
+      <h1>11-Forms</h1>
+      <h2>Creates interactive forms for user input.</h2>
+    </header>
 
-        <section>
-            <form>
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre">
+    <section>
+      <h2>Complete Form</h2>
 
-                <label for="correo">Correo</label>
-                <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com">
+      <form>
 
-                <label for="contrasena">Contraseña</label>
-                <input type="password" id="contrasena" name="contrasena" placeholder="Escribe tu contraseña">
+        <fieldset>
+          <legend>Text Inputs</legend>
 
-                <label for="confirmar">Confirmar Contraseña</label>
-                <input type="password" id="confirmar" name="confirmar" placeholder="Repite tu contraseña">
+          <label>Name:</label>
+          <input type="text" name="name">
+          <br><br>
+          <label>Password:</label>
+          <input type="password" name="password">
+          <br><br>
+          <label>Email:</label>
+          <input type="email" name="email">
+          <br><br>
+          <label>Search:</label>
+          <input type="search" name="search">
+        </fieldset>
 
-                <label for="tipo">Tipo de usuario</label>
-                <select id="tipo" name="tipo">
-                    <option value="">Selecciona una opción</option>
-                    <option value="estudiante">Estudiante</option>
-                    <option value="profesional">Profesional</option>
-                    <option value="otro">Otro</option>
-                </select>
+        <fieldset>
+          <legend>Numbers & Dates</legend>
 
-                <div class="buttons">
-                    <input type="submit" value="Registrarse">
-                    <input type="reset" value="Resetear">
-                </div>
-            </form>
-        </section>
-    </main>
+          <label>Number:</label>
+          <input type="number" name="number">
+          <br>
+          <label>Range:</label>
+          <input type="range" name="range">
+          <br>
+          <label>Date:</label>
+          <input type="date" name="date">
+          <br>
+          <label>Time:</label>
+          <input type="time" name="time">
+          <br>
+          <label>Week:</label>
+          <input type="week" name="week">
+          <br>
+          <label>Month:</label>
+          <input type="month" name="month">
+        </fieldset>
+
+        <fieldset>
+          <legend>Pickers</legend>
+
+          <label>Color:</label>
+          <input type="color" name="color">
+          <br>
+          <label>File:</label>
+          <input type="file" name="file">
+        </fieldset>
+        <fieldset>
+          <legend>Options</legend>
+
+          <div class="inline">
+            <input type="radio" name="gender" value="male">
+            <label>Male</label>
+          </div>
+          <div class="inline">
+            <input type="radio" name="gender" value="female">
+            <label>Female</label>
+          </div>
+
+          <div class="inline">
+            <input type="checkbox" name="terms">
+            <label>Accept terms</label>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Select & Textarea</legend>
+
+          <select name="options">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
+          <br><br>
+          <textarea rows="4" placeholder="Write something..."></textarea>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Progress</legend>
+          <progress value="60" max="100"></progress>
+        </fieldset>
+
+        <fieldset>
+          <legend>Buttons</legend>
+
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+
+        </fieldset>
+
+      </form>
+
+    </section>
+  </main>
 </body>
-
-</html>
