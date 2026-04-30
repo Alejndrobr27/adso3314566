@@ -155,7 +155,7 @@ header {
         }
 
         section {
-    background-color: #0009;
+    background-color: rgba(72, 32, 136, 0.6);
     border-radius: 0.2rem;
     min-width: 350px;
     margin-top: 2rem;
