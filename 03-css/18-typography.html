@@ -4,8 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03-CSS</title>
+    <title>18-Typography</title>
     <link rel="stylesheet" href="../src/css/03-css.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            border: 2px solid #ccc;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+        }
+
+        .text {
+            margin: 1rem 0;
+        }
+
+        /* COLOR */
+        .color {
+            color: crimson;
+        }
+
+        /* FAMILY */
+        .family {
+            font-family: "Courier New", monospace;
+        }
+
+        /* SIZE */
+        .size {
+            font-size: 28px;
+        }
+
+        /* WEIGHT */
+        .weight {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,13 +59,39 @@
             </path>
         </svg>
     </a>
+
     <main>
+
         <header>
             <h1>18-Typography</h1>
-            <h2> - Color <br>
-                - Family <br>
-                - Size <br>
-                - Weight
-
-            </h2>
         </header>
+
+        <!-- COLOR -->
+        <section>
+            <h2>Color</h2>
+            <p class="text color">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint cum facere doloribus nulla consectetur, ea voluptatibus mollitia maxime molestias incidunt expedita, vel tenetur repellat perspiciatis cupiditate asperiores neque recusandae.</p>
+        </section>
+
+        <!-- FAMILY -->
+        <section>
+            <h2>Font Family</h2>
+            <p class="text family">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint cum facere doloribus nulla consectetur, ea voluptatibus mollitia maxime molestias incidunt expedita, vel tenetur repellat perspiciatis cupiditate asperiores neque recusandae.</p>
+        </section>
+
+        <!-- SIZE -->
+        <section>
+            <h2>Font Size</h2>
+            <p class="text size">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint cum facere doloribus nulla consectetur, ea voluptatibus mollitia maxime molestias incidunt expedita, vel tenetur repellat perspiciatis cupiditate asperiores neque recusandae.</p>
+        </section>
+
+        <!-- WEIGHT -->
+        <section>
+            <h2>Font Weight</h2>
+            <p class="text weight">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum sint cum facere doloribus nulla consectetur, ea voluptatibus mollitia maxime molestias incidunt expedita, vel tenetur repellat perspiciatis cupiditate asperiores neque recusandae.</p>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

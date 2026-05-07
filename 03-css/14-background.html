@@ -4,8 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03-CSS</title>
+    <title>14-Background</title>
     <link rel="stylesheet" href="../src/css/03-css.css">
+    <style>
+        h3 {
+            color: white;
+        }
+
+        div.background-color {
+            background-color: rgb(141, 97, 223);
+            width: 350px;
+            height: 350px;
+            margin: 2rem auto;
+        }
+
+        div.background-image {
+            background: url(../src/imgs/pattern.png) repeat center / cover;
+            width: 350px;
+            height: 350px;
+            margin: 2rem auto;
+        }
+
+        div.background-repeat {
+            background: url(../src/imgs/pattern.png) no-repeat center / cover;
+            width: 200px;
+            height: 200px;
+            margin: 2rem auto;
+        }
+
+        div.background-position {
+            background: url(../src/imgs/pattern.png)  left  / contain;
+            width: 200px;
+            height: 200px;
+            
+        }
+
+        div.background-size {
+            background: url(../src/imgs/pattern.png) right / contain;
+            width: 200px;
+            height: 280px;
+            margin: 2rem auto;
+        }
+
+        div.background-attachment {
+            background: url(../src/imgs/pattern.png) center / cover fixed;
+            width: 350px;
+            height: 350px;
+            margin: 2rem auto;
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -23,7 +72,23 @@
                 - background-image <br>
                 - background-repeat <br>
                 - background-position <br>
-                - background-size
+                - background-size <br>
+                - background attachment <br>
 
             </h2>
         </header>
+        
+        <section>
+            <h3>Background Color</h3>
+            <div class="background-color"></div>
+            <h3>Background Image</h3>
+            <div class="background-image"></div>
+            <h3>Background Repeat</h3>
+            <div class="background-repeat"></div>
+            <h3>Background Position</h3>
+            <div class="background-position"></div>
+            <h3>Background Size</h3>
+            <div class="background-size"></div>
+            <h3>Background Attachment</h3>
+            <div class="background-attachment"></div>
+        </section>
