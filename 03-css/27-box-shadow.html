@@ -6,6 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>03-CSS</title>
     <link rel="stylesheet" href="../src/css/03-css.css">
+    <style>
+        h3 {
+            color: white;
+        }
+        div.images img{
+            all: unset;
+            width: 200px;
+        }
+
+        div.box {
+            margin: 1rem auto;
+            height: 100px;
+            width: 200px;
+            background: rgb(129, 102, 194);
+        }
+        div.box1{
+            box-shadow: 0 0 12px #fff;
+        }
+        div.box2{
+            box-shadow: -10px -10px 24px 0 #fff;
+        }
+        div.box3{
+            box-shadow: 0 0 20px #fff inset;
+        }
+        div.box4{
+            box-shadow: 4px 4px 0 #d4c00a, 8px 8px 0 #0627bb, 12px 12px 0 #e70e0e;
+        }
+
+            div.images {
+                display: flex;
+                justify-content: center;
+                margin-block: 2rem;
+                gap: 1rem;
+            }
+            div.images img:first-child{
+                box-shadow: 0 0 12px #fff;
+            }
+            div.images img:last-child{
+                filter: drop-shadow(0 0 12px #fff);
+            }
+    </style>
 </head>
 
 <body>
@@ -24,3 +65,19 @@
 
             </h2>
         </header>
+        <section>
+            <h3>Box-shadow: 0 0 12px #fff</h3>
+            <div class="box box1"></div>
+            <h3>Box-shadow: -10px -10px 24px 0 #fff</h3>
+            <div class="box box2"></div>
+            <h3>Box-shadow: 0 0 20px #fff inset</h3>
+            <div class="box box3"></div>
+            <h3>Box-shadow: multiple #fff</h3>
+            <div class="box box4"></div>
+            <h3>Box-shadow: VS drop-shadow()</h3>
+            <div class="images">
+                <img src="imgs/Crash.jpg" width="50" height="50" >
+                <img src="imgs/Crash.jpg" width="50" height="50" >
+            </div>
+            
+        </section>

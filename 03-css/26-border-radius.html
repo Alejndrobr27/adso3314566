@@ -6,13 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>03-CSS</title>
     <link rel="stylesheet" href="../src/css/03-css.css">
+    <style>
+        div {
+            color: white;
+            height: 70px;
+            width: 70x;
+            transition: all 0.4s ease-in;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+                box-shadow: 0 6px 30px rgb(163, 157, 201);
+            }
+
+        }
+        h3 {
+            color: white;
+        }
+
+        .box1 {
+            background: rgb(156, 142, 218);
+            width: 100px;
+            height: 100px;
+            border-radius: 140px 0 0 0;
+            margin: 0 auto;
+        }
+
+        .box2 {
+            background: rgb(156, 142, 218);
+            width: 100px;
+            height: 100px;
+            border-radius: 0 140px 0 0;
+            margin: 0 auto;
+        }
+
+        .box3 {
+            background: rgb(156, 142, 218);
+            width: 100px;
+            height: 100px;
+            border-radius: 0 0 140px 0;
+            margin: 0 auto;
+        }
+
+        .box4 {
+            background: rgb(156, 142, 218);
+            width: 100px;
+            height: 100px;
+            border-radius: 0 0 0 140px;
+            margin: 0 auto;
+        }
+
+        .box5 {
+            background: rgb(156, 142, 218);
+            width: 100px;
+            height: 100px;
+            border-radius: 140px;
+            margin: 0 auto;
+        }
+
+        .box6 {
+            background: rgb(156, 142, 218);
+            width: 100px;
+            height: 100px;
+            border-radius: 140px 140px 0 0;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 
 <body>
     <a href="/03-css/index.html" class="btn-home">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
             <path
-                d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z">
+                d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,12₀H2₁₆A8,8,₀,₀,₁,₂₂₄,₁₂₈Z">
             </path>
         </svg>
     </a>
@@ -24,3 +90,18 @@
 
             </h2>
         </header>
+        <section>
+            <h3>Border-Radius 140px 0 0 0</h3> <br>
+            <div class="box1"></div> <br>
+            <h3>Border-Radius 0 140px 0 0</h3> <br>
+            <div class="box2"></div> <br>
+            <h3>Border-Radius 0 0 140px 0</h3> <br>
+            <div class="box3"></div> <br>
+            <h3>Border-Radius 0 0 0 140px</h3> <br>
+            <div class="box4"></div> <br>
+            <h3>Border-Radius 140px</h3> <br>
+            <div class="box5"></div> <br>
+            <h3>Border-Radius 140px 140px 0 0</h3> <br>
+            <div class="box6"></div> <br>
+        </section>
+        
