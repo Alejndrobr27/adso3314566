@@ -43,7 +43,6 @@ main h4 {
     font-weight: 400;
 }
 
-/* 🔥 CONTENEDOR PRINCIPAL DE MENÚS */
 .menu {
     display: flex;
     gap: 2rem;
@@ -53,7 +52,6 @@ main h4 {
     margin-top: 2rem;
 }
 
-/* 🔥 CADA COLUMNA */
 menu {
     display: flex;
     flex-direction: column;
@@ -73,7 +71,7 @@ menu h3 {
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-/* LINKS */
+
 menu a:link,
 menu a:visited {
     background-color: rgb(75, 7, 184);
