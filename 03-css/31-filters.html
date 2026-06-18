@@ -1,5 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    h3 {
+        color: white;
+    }
+
+    .creed {
+        background: url(imgs/creed.png) no-repeat center / contain;
+        width: 300px;
+        height: 300px;
+        margin: 20px auto;
+        transition: filter 0.5s ease;
+        border: none;
+        
+    }
+
+
+    .blur:hover,
+    .grayscale:hover,
+    .sepia:hover,
+    .saturate:hover,
+    .invert:hover {
+        filter: none;
+    }
+
+    .brightness:hover,
+    .contrast:hover {
+        filter: none;
+    }
+
+
+
+    .normal {
+        filter: none;
+    }
+
+    .blur {
+        filter: blur(4px);
+    }
+
+    .grayscale {
+        filter: grayscale(100%);
+    }
+
+    .sepia {
+        filter: sepia(100%);
+    }
+
+    .saturate {
+        filter: saturate(300%);
+    }
+
+    .invert {
+        filter: invert(100%);
+    }
+
+    .brightness {
+        filter: brightness(180%);
+    }
+
+    .contrast {
+        filter: contrast(250%);
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">
@@ -23,4 +86,23 @@
 
 
             </h2>
+            <section>
+                <h3>Assassin Creed - Filters</h3>
+                <div class="creed normal"></div>
+                <br>
+                <h3>blur</h3>
+                <div class="creed blur"></div>
+                <br>
+                <h3>brightness</h3>
+                <div class="creed brightness"></div>
+                <br>
+                <h3>sepia</h3>
+                <div class="creed sepia"></div>
+                <br>
+                <h3>contrast</h3>
+                <div class="creed contrast"></div>
+                <br>
+                <h3>invert</h3>
+                <div class="creed invert"></div>
+            </section>>
         </header>
