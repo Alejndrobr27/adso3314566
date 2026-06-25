@@ -1,11 +1,356 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Naruto Responsive</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+
+            background:
+                linear-gradient(rgba(0, 0, 0, .45),
+                    rgba(0, 0, 0, .45)),
+                url(imgs/fondonaruto.png);
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* LOGO */
+
+        .logo {
+            width: 280px;
+            height: 120px;
+
+            background: url(imgs/logonaruto.png) center/contain no-repeat;
+
+            margin: 20px auto;
+
+            animation: logo 2s infinite alternate;
+        }
+
+        @keyframes logo {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.08);
+            }
+        }
+
+        /* MENU */
+
+        .menu {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 20px auto;
+
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .menu a {
+            background: rgba(0, 0, 0, .55);
+
+            color: white;
+
+            text-decoration: none;
+
+            width: 180px;
+            padding: 15px;
+
+            text-align: center;
+
+            border-bottom: 6px solid white;
+
+            transition: .3s;
+        }
+
+        .menu a:hover {
+            transform: translateY(-5px);
+            border-bottom: 6px solid orange;
+        }
+
+        /* TARJETAS */
+
+        .cards {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 20px auto;
+
+            padding: 20px;
+
+            background: rgba(0, 0, 0, .4);
+
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 300px;
+            height: 250px;
+
+            border: 2px solid rgb(216, 110, 39);
+
+            display: flex;
+            align-items: flex-start;
+
+            overflow: hidden;
+
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card figcaption {
+            width: 100%;
+
+            background: rgba(172, 93, 41, 0.8);
+
+            text-align: center;
+
+            font-size: 25px;
+            font-weight: bold;
+
+            padding: 12px;
+        }
+
+        .naruto {
+            background: url(imgs/naruto.png) center/cover no-repeat;
+            
+        }
+
+        .itachi {
+            background: url(imgs/itachi.png) center/cover no-repeat;
+        }
+
+        .obito {
+            background: url(imgs/obito.png) center/cover no-repeat;
+        }
+
+        /* DESCRIPCIONES */
+
+        .info {
+            width: 90%;
+            max-width: 1100px;
+
+            margin: 20px auto;
+
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .personaje {
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 25px;
+
+            padding: 20px;
+        }
+
+        .personaje p {
+            flex: 1;
+
+            text-align: justify;
+
+            line-height: 1.7;
+        }
+
+        .personaje:hover p {
+            color: #ff6600;
+        }
+
+        .naruto-img,
+        .itachi-img,
+        .obito-img,
+        .madara-img,
+        .kurama-img {
+            width: 150px;
+            height: 150px;
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .naruto-img {
+            background-image: url(imgs/naruto.png);
+        }
+
+        .itachi-img {
+            background-image: url(imgs/itachi.png);
+        }
+
+        .obito-img {
+            background-image: url(imgs/obito.png);
+        }
+
+        .madara-img {
+            background-image: url(imgs/madara.png);
+        }
+
+        .kurama-img {
+            background-image: url(imgs/kurama.png);
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            color: white;
+
+            padding: 30px;
+        }
+
+        /* TABLET */
+
+        @media(max-width:1024px) {
+
+            .card {
+                width: 250px;
+                height: 220px;
+            }
+
+            .personaje {
+                gap: 15px;
+            }
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px) {
+
+            .menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .personaje {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .personaje p {
+                width: 100%;
+            }
+
+            .logo {
+                width: 220px;
+                height: 90px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <div class="logo"></div>
+
+    <nav class="menu">
+        <a href="#">Inicio</a>
+        <a href="#">Personajes</a>
+        <a href="#">Akatsuki</a>
+        <a href="#">Aldeas</a>
+        
+    </nav>
+
+    <section class="cards">
+
+        <div class="card naruto">
+            <figcaption>Naruto</figcaption>
+        </div>
+
+        <div class="card itachi">
+            <figcaption>Itachi</figcaption>
+        </div>
+
+        <div class="card obito">
+            <figcaption>Obito</figcaption>
+        </div>
+
+    </section>
+
+    <section class="info">
+
+        <div class="personaje">
+            <aside class="naruto-img"></aside>
+            <p>
+                Naruto Uzumaki es el protagonista principal de la serie.
+                Su sueño es convertirse en Hokage y proteger a todos los
+                habitantes de Konoha.
+            </p>
+        </div>
+
+        <div class="personaje">
+            <aside class="itachi-img"></aside>
+            <p>
+                Itachi Uchiha fue uno de los shinobis más talentosos de
+                la historia. Sacrificó todo por la seguridad de su aldea.
+            </p>
+        </div>
+
+        <div class="personaje">
+            <aside class="obito-img"></aside>
+            <p>
+                Obito Uchiha pasó de ser un héroe a convertirse en uno
+                de los principales antagonistas de la Cuarta Guerra Ninja.
+            </p>
+        </div>
+
+        <div class="personaje">
+            <aside class="madara-img"></aside>
+            <p>
+                Madara Uchiha fue uno de los fundadores de Konoha y uno
+                de los personajes más poderosos del universo Naruto.
+            </p>
+        </div>
+
+        <div class="personaje">
+            <aside class="kurama-img"></aside>
+            <p>
+                Kurama es la Bestia de Nueve Colas. Con el tiempo se
+                convirtió en el mejor aliado de Naruto.
+            </p>
+        </div>
+
+    </section>
+
+    <footer>
+        © Naruto Responsive Challenge
+    </footer>
+
 </body>
+
 </html>
