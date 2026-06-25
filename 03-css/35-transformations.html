@@ -4,23 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03-CSS</title>
+    <title>35-Transformations</title>
+
+    <style>
+        .box img {
+            all: unset;
+            width: 300px;
+            height: 600px;
+        }
+
+        .rotate img:hover {
+            transform: rotate(20deg);
+        }
+
+        .scale img:hover {
+            transform: scale(1.2);
+        }
+
+        .translate img:hover {
+            transform: translateY(-20px);
+        }
+
+        .skew img:hover {
+            transform: skew(-10deg, 5deg);
+        }
+
+        .combo img:hover {
+            transform: rotate(-10deg) scale(1.15) translateY(-10px);
+        }
+    </style>
+
     <link rel="stylesheet" href="../src/css/03-css.css">
 </head>
 
 <body>
+
     <a href="/03-css/index.html" class="btn-home">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#ffff" viewBox="0 0 256 256">
             <path
-                d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z">
+                d="M232,200a8,8,0,0,1-16,0,88.1,88.1,0,0,0-88-88H51.31l34.35,34.34a8,8,0,0,1-11.32,11.32l-48-48a8,8,0,0,1,0-11.32l48-48A8,8,0,0,1,85.66,61.66L51.31,96H128A104.11,104.11,0,0,1,232,200Z">
             </path>
         </svg>
     </a>
+
     <main>
         <header>
             <h1>35-Transformations</h1>
-            <h2>Property lets you rotate, scale, skew, or translate an element.
-
-
-            </h2>
+            <br>
+            <h2>Property lets you rotate, scale, skew, or translate an element.</h2>
         </header>
+
+        <section>
+            <h3>Rotate</h3>
+            <br>
+            <div class="box rotate">
+                <img src="/03-css/imgs/Crash.jpg" alt="Rotate">
+            </div>
+            <br>
+            <h3>Scale</h3>
+            <br>
+            <div class="box scale">
+                <img src="/03-css/imgs/Crash.jpg" alt="Scale">
+            </div>
+            <br>
+            <h3>Translate</h3>
+            <br>
+            <div class="box translate">
+                <img src="/03-css/imgs/Crash.jpg" alt="Translate">
+            </div>
+            <br>
+            <h3>Skew</h3>
+            <br>
+            <div class="box skew">
+                <img src="/03-css/imgs/Crash.jpg" alt="Skew">
+            </div>
+            <br>
+            <h3>Combined</h3>
+            <br>
+            <div class="box combo">
+                <img src="/03-css/imgs/Crash.jpg" alt="Combined">
+
+            </div>
+
+        </section>
+    </main>
+
+</body>
+
+</html>

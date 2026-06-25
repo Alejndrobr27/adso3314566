@@ -6,6 +6,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>03-CSS</title>
     <link rel="stylesheet" href="../src/css/03-css.css">
+    <style>
+        main section {
+            div.jungle{
+                background: url(imgs/jungle.png) no-repeat center;
+                border-radius: 4px;
+                margin-block: 2rem;
+                position: relative;
+                height: 491px;
+                width: 450px;
+                img {
+                    border-radius: 0%;
+                    border: none;
+                    position: absolute;
+                }
+                
+                img.logo{
+                    top: 30px;
+                    left: 70px;
+                    height: 45px;
+                    object-fit: contain;
+                    z-index: 9;
+                    width: 317px;
+                    animation: 4s animLogo ease-in infinite;
+                }
+                img.dk {
+                    top: 100px;
+                    left: 170px;
+                    width: 120px;
+                    object-fit: contain;
+                    z-index: 8;
+                    animation: 2s animDk ease-in infinite;
+                }
+                div.move{
+                    top: 230px;
+                    position: absolute;
+                    left: 40px;
+                    img.ryno{
+                        width: 140px;
+                        object-fit: contain;
+                        top: 0;
+                        animation: 1.8s animRyno linear infinite;
+                    }
+                }
+            }
+        }
+        @keyframes animLogo {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes animDk {
+            0% { top: 130px; transform: rotate(0deg);}
+            40% { top: 80px; transform: rotate(0deg);}
+            50% { top: 80px; transform: rotate(360deg);}
+            60% { top: 80px; transform: rotate(360deg);}
+            100% { top: 130px; transform: rotate(360deg);}
+        }
+        @keyframes animRyno {
+    0% {
+        left: 0px;
+        top: 0px;
+        transform: rotate(0deg);
+    }
+
+    10% { top: -8px; }
+    20% { top: 0px; }
+    30% { top: -8px; }
+    40% { top: 0px; }
+    50% { top: -8px; }
+    60% { top: 0px; }
+
+    70% {
+        left: 200px;
+        top: 0px;
+        transform: rotate(0deg);
+    }
+
+    75% {
+        left: 200px;
+        top: -5px;
+        transform: rotate(-20deg);
+    }
+
+    80% {
+        left: 200px;
+        top: 0px;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+        transform: rotate(0deg);
+    }
+}
+    </style>
 </head>
 
 <body>
@@ -24,3 +124,12 @@
 
             </h2>
         </header>
+        <section>
+            <div class="jungle">
+                <img src="imgs/logo-dk.png" alt="" class="logo">
+                <img src="imgs/dk.png" alt="" class="dk">
+                <div class="move">
+                    <img src="imgs/ryno.png" alt="" class="ryno">
+                </div>
+            </div>
+        </section>
