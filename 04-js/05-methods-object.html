@@ -142,7 +142,7 @@
                 setTimeout(() => {
                     if (this.lsAlive) {
                         pkImage.className = 'pk-image animate__animated alive';
-                E    } else {
+                    } else {
                         pkImage.className = 'pk-image animate__animated dead';
                     }
                 }, 500);
@@ -151,7 +151,7 @@
             attack() {
                 if (!this.lsAlive) return;
 
-                this.hp -= 10;
+                this.hp -= 25;
 
                 if (this.hp <= 0) {
                     this.hp = 0;
@@ -162,12 +162,21 @@
             },
 
             feed() {
-                if (!this.lsAlive) return;
+                // Revivir si está muerto
+                if (!this.lsAlive) {
+                    this.hp = 25;
+                    this.lsAlive = true;
+                    this.updateHp('feed');
+                    return;
+                }
 
-                this.hp += 10;
+                // No superar los 200 HP
+                if (this.hp >= 200) return;
 
-                if (this.hp > 100) {
-                    this.hp = 100;
+                this.hp += 25;
+
+                if (this.hp > 200) {
+                    this.hp = 200;
                 }
 
                 this.updateHp('feed');
