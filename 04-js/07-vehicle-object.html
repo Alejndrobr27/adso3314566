@@ -76,19 +76,46 @@
             transform: scale(1.1);
         }
 
-        .model-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: -30px;
+        /* --- LANDSCAPE (Contenedor del paisaje y la moto) --- */
+        .landscape {
+            position: relative;
+            height: 220px;
+            width: 100%;
+            background: url(imgs/dia.png) no-repeat center bottom / cover;
+            transition: background-image 0.3s ease;
+            margin-top: 10px;
+            border-radius: 8px;
+            overflow: hidden;
         }
 
-        .model {
-            background: url(imgs/moto.png) no-repeat center / contain;
-            height: 150px;
-            width: 200px;
-            transition: background-image 0.3s ease;
+        #vehicle.dark .landscape {
+            background: url(imgs/noche.png) no-repeat center bottom / cover;
         }
+
+        /* --- MOTO (Más grande y más arriba) --- */
+        .model {
+            position: absolute;
+            bottom: 0px; /* Sube un poco más */
+            left: 50%;
+            transform: translateX(-50%);
+            background: url(imgs/rider1.png) no-repeat center / contain;
+            height: 210px; /* Más grande */
+            width: 280px;  /* Ajuste proporcional */
+            transition: background-image 0.3s ease;
+            z-index: 10;
+        }
+        /* ----------------------------------------------------- */
+
+        /* Textos de info */
+        #vehicle .text-data {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            margin: 5px 0;
+            color: #333;
+        }
+        #vehicle.dark .text-data { color: #fff; }
 
         .info-row {
             display: flex;
@@ -125,20 +152,6 @@
         #vehicle.dark .info-item .icon-refer { background-image: url(imgs/refer-dark.svg); }
         #vehicle.dark .info-item .icon-color { background-image: url(imgs/color-dark.svg); }
 
-        /* --- CAMBIO AQUÍ: Landscape como imagen de fondo --- */
-        .landscape {
-            height: 120px; /* Ajusta la altura según prefieras */
-            width: 100%;
-            background: url(imgs/dia.png) no-repeat center / contain;
-            transition: background-image 0.3s ease;
-            margin-top: 10px;
-        }
-
-        #vehicle.dark .landscape {
-            background: url(imgs/noche.png) no-repeat center / contain;
-        }
-        /* ----------------------------------------------------- */
-
         .controls-row {
             display: flex;
             justify-content: center;
@@ -174,16 +187,6 @@
         #vehicle.dark #vehicle>nav figure.brand { color: #fff; }
 
         .reference, .color { display: none; }
-        
-        #vehicle .text-data {
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            margin: 5px 0;
-            color: #333;
-        }
-        #vehicle.dark .text-data { color: #fff; }
     </style>
 </head>
 
@@ -216,27 +219,26 @@
                     <button class="next" id="nextBtn" aria-label="Next"></button>
                 </nav>
 
-                <div class="model-wrapper">
-                    <figure class="model" id="modelImage"></figure>
-
-                    <div class="info-row">
-                        <div class="info-item">
-                            <div class="icon icon-model"></div>
-                            <div class="text-data" id="modelText">R</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="icon icon-refer"></div>
-                            <div class="text-data" id="referText"></div>
-                        </div>
-                        <div class="info-item">
-                            <div class="icon icon-color"></div>
-                            <div class="text-data" id="colorText"></div>
-                        </div>
+                <!-- INFORMACIÓN -->
+                <div class="info-row">
+                    <div class="info-item">
+                        <div class="icon icon-model"></div>
+                        <div class="text-data" id="modelText">MT-09 TRACER</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon icon-refer"></div>
+                        <div class="text-data" id="referText">TRACER 900 GT</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon icon-color"></div>
+                        <div class="text-data" id="colorText">BLUE/BLACK</div>
                     </div>
                 </div>
 
-                <!-- LANDSCAPE (ahora es solo una imagen de fondo) -->
-                <div class="landscape"></div>
+                <!-- LANDSCAPE con la moto DENTRO -->
+                <div class="landscape">
+                    <figure class="model" id="modelImage"></figure>
+                </div>
 
                 <div class="controls-row">
                     <button id="onBtn">ON</button>
@@ -246,8 +248,8 @@
                     <button id="offBtn">OFF</button>
                 </div>
 
-                <figure class="reference" style="display:none;"></figure>
-                <figure class="color" style="display:none;"></figure>
+                <figure class="reference" style="display:none;">YAM-2024</figure>
+                <figure class="color" style="display:none;">ICON BLUE</figure>
 
             </div>
         </section>
@@ -331,7 +333,6 @@
         // Tema Oscuro / Claro
         const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
         
-        // Función para aplicar el tema y actualizar TODAS las imágenes dependientes
         const updateTheme = (e) => {
             const isDark = e.matches;
             vhc.classList.toggle('dark', isDark);
@@ -339,10 +340,6 @@
             mode.style.backgroundImage = isDark ? "url('imgs/mode-dark.svg')" : "url('imgs/mode-light.svg')";
             prevBtn.style.backgroundImage = isDark ? "url('imgs/prev-dark.svg')" : "url('imgs/prev-light.svg')";
             nextBtn.style.backgroundImage = isDark ? "url('imgs/next-dark.svg')" : "url('imgs/next-light.svg')";
-            
-            // El paisaje se cambia automáticamente gracias a la regla CSS: #vehicle.dark .landscape
-            // Pero si quisieras forzarlo por JS, sería:
-            // document.querySelector('.landscape').style.backgroundImage = isDark ? "url('imgs/noche.png')" : "url('imgs/dia.png')";
         };
 
         darkModeQuery.addEventListener('change', updateTheme);
