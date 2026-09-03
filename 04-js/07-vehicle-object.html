@@ -1,96 +1,367 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>07-JavaScript</title>
-    <link rel="stylesheet" href="../src/css/04-js.css" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07 - Class Vehicle</title>
+    <link rel="stylesheet" href="../src/css/04-js.css">
     <style>
-      div.vehicle {
-        &.dark {
-          background-color: #333333;
-          header {
-            button.mode {
-              background: url(imgs/mode.light.svg) no-repeat center / cover;
-            }
-          }
-        }
-        width: 356px;
-        height: 576px;
-        padding: 12px;
-        background-color: #ffffff;
-        border: 2px solid #ff0000;
-        margin: 0 auto;
-        border-radius: 8px;
-        header {
-          align-items: center;
-          display: flex;
-          justify-content: space-between;
-          figure {
-            border: 2px solid #ff0000;
-            background: url(imgs/Mt-09.png) no-repeat center / cover;
-            width: 220px;
-            height: 49px;
+        #vehicle {
+            border-radius: 10px;
+            background-color: #fbfcfc;
+            height: 576px;
+            padding: 12px;
+            width: 356px;
             margin: 0 auto;
-          }
-          button.mode {
-            background: url(imgs/mode.light.svg) no-repeat center / cover;
-            border: none;
-            height: 60px;
-            width: 100px;
-            cursor: pointer;
-            transition: transform 0.4s ease-in;
-            &.hover {
-              transform: scale(1.1);
-            }
-          }
+            transition: background-color 0.3s ease;
         }
-      }
+
+        #vehicle.dark {
+            background-color: #13171a;
+        }
+
+        #vehicle>header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #vehicle>header figure.logo {
+            background: url(imgs/Mt-09.png) no-repeat center / contain;
+            height: 110px;
+            width: 220px;
+            margin: 0;
+        }
+
+        #vehicle>header button.mode {
+            background: url(imgs/mode-dark.svg) no-repeat center / contain;
+            border: none;
+            cursor: pointer;
+            height: 70px;
+            width: 120px;
+            transition: transform 0.4s ease-in;
+        }
+
+        #vehicle>nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: -25px;
+        }
+
+        #vehicle>nav button {
+            border: none;
+            cursor: pointer;
+            height: 70px;
+            width: 70px;
+            transition: transform 0.4s ease-in;
+        }
+
+        #vehicle>nav button.prev {
+            background: url(imgs/prev-light.svg) no-repeat center / contain;
+            height: 100px;
+            width: 90px;
+            margin-left: 10px;
+        }
+
+        #vehicle>nav button.next {
+            background: url(imgs/next-light.svg) no-repeat center / contain;
+            height: 100px;
+            width: 90px;
+            margin-right: 10px;
+        }
+
+        #vehicle>nav button:hover {
+            transform: scale(1.1);
+        }
+
+        .model-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -30px;
+        }
+
+        .model {
+            background: url(imgs/moto.png) no-repeat center / contain;
+            height: 150px;
+            width: 200px;
+            transition: background-image 0.3s ease;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 5px;
+            align-items: center;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-item .value, .info-item .label {
+            display: none;
+        }
+
+        .info-item .icon {
+            width: 110px;
+            height: 80px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transition: background-image 0.3s ease;
+        }
+
+        .info-item .icon-model { background-image: url(imgs/model-light.svg); }
+        .info-item .icon-refer { background-image: url(imgs/refer-light.svg); }
+        .info-item .icon-color { background-image: url(imgs/color-light.svg); }
+
+        #vehicle.dark .info-item .icon-model { background-image: url(imgs/model-dark.svg); }
+        #vehicle.dark .info-item .icon-refer { background-image: url(imgs/refer-dark.svg); }
+        #vehicle.dark .info-item .icon-color { background-image: url(imgs/color-dark.svg); }
+
+        /* --- CAMBIO AQUÍ: Landscape como imagen de fondo --- */
+        .landscape {
+            height: 120px; /* Ajusta la altura según prefieras */
+            width: 100%;
+            background: url(imgs/dia.png) no-repeat center / contain;
+            transition: background-image 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #vehicle.dark .landscape {
+            background: url(imgs/noche.png) no-repeat center / contain;
+        }
+        /* ----------------------------------------------------- */
+
+        .controls-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .controls-row button {
+            background: none;
+            border: none;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 12px;
+            color: #333;
+            cursor: pointer;
+            padding: 5px 8px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        #vehicle.dark .controls-row button { color: #fff; }
+        .controls-row button:hover { color: #007bff; }
+        #vehicle.dark .controls-row button:hover { color: #4da3ff; }
+
+        #vehicle>nav figure.brand {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 22px;
+            color: #333;
+            margin: 0;
+        }
+
+        #vehicle.dark #vehicle>nav figure.brand { color: #fff; }
+
+        .reference, .color { display: none; }
+        
+        #vehicle .text-data {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            margin: 5px 0;
+            color: #333;
+        }
+        #vehicle.dark .text-data { color: #fff; }
     </style>
-  </head>
+</head>
 
-  <body>
-    <a href="/04-js/index.html" class="btn-home">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        fill="#000000"
-        viewBox="0 0 256 256"
-      >
-        <path
-          d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"
-        ></path>
-      </svg>
-    </a>
-
+<body>
     <main>
-      <header>
-        <h1>07-vehicle-object</h1>
-        <h2>Class Vehicle.</h2>
-      </header>
-      <section>
-        <div class="vehicle">
-          <header>
-            <figure class="logo"></figure>
-            <button class="mode"></button>
-          </header>
+        <div class="contenedor-botones">
+            <a href="/04-js/index.html" class="btn-home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+                    <path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"></path>
+                </svg>
+            </a>
         </div>
-      </section>
+
+        <header>
+            <h1>Class Vehicle</h1>
+            <h2>Create and manipulate a vehicle object with properties</h2>
+        </header>
+
+        <section>
+            <div class="vehicle" id="vehicle">
+
+                <header>
+                    <figure class="logo"></figure>
+                    <button class="mode" id="modeToggle" aria-label="Toggle dark/light mode"></button>
+                </header>
+
+                <nav>
+                    <button class="prev" id="prevBtn" aria-label="Previous"></button>
+                    <figure class="brand" id="brandLabel">MT-09 TRACER</figure>
+                    <button class="next" id="nextBtn" aria-label="Next"></button>
+                </nav>
+
+                <div class="model-wrapper">
+                    <figure class="model" id="modelImage"></figure>
+
+                    <div class="info-row">
+                        <div class="info-item">
+                            <div class="icon icon-model"></div>
+                            <div class="text-data" id="modelText">R</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon icon-refer"></div>
+                            <div class="text-data" id="referText"></div>
+                        </div>
+                        <div class="info-item">
+                            <div class="icon icon-color"></div>
+                            <div class="text-data" id="colorText"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LANDSCAPE (ahora es solo una imagen de fondo) -->
+                <div class="landscape"></div>
+
+                <div class="controls-row">
+                    <button id="onBtn">ON</button>
+                    <button id="forwardBtn">FORWARD</button>
+                    <button id="stopBtn">STOP</button>
+                    <button id="backBtn">BACK</button>
+                    <button id="offBtn">OFF</button>
+                </div>
+
+                <figure class="reference" style="display:none;"></figure>
+                <figure class="color" style="display:none;"></figure>
+
+            </div>
+        </section>
     </main>
+
     <script>
-      const vhc = document.querySelector(".vehicle");
-      const darkMode = window.matchMedia("(prefers-color-scheme: dark)");
-      const updateTheme = (e) => vhc.classList.toggle("dark", e.matches);
+        const vhc = document.getElementById('vehicle');
+        const mode = document.getElementById('modeToggle');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
-      darkMode.addEventListener("change", updateTheme);
-      updateTheme(darkMode);
+        const lbrand = document.querySelector('.brand');
+        const lmodel = document.getElementById('modelText');
+        const lrefer = document.getElementById('referText');
+        const lcolor = document.getElementById('colorText');
+        const modelImage = document.getElementById('modelImage');
 
-      //Events
-      const mode = document.querySelector(".mode");
-      mode.addEventListener("click", function() {
-        vhc.classList.toggle("dark");
-      });
+        let ix = 0;
+
+        const vehicles = {
+            attrs: [
+                { brand: 'MT-09 TRACER', refer: 'TRACER 900 GT', model: 'MT-09', color: 'BLUE/BLACK', image: 'imgs/rider1.png' },
+                { brand: 'R6', refer: 'YZF-R6', model: 'R6', color: 'BLUE/WHITE', image: 'imgs/rider2.png' },
+                { brand: 'R1', refer: 'YZF-R1', model: 'R1', color: 'BLACK/BLUE', image: 'imgs/rider3.png' },
+                { brand: 'XJ6', refer: 'XJ6 DIVERSION', model: 'XJ6', color: 'WHITE/RED', image: 'imgs/rider4.png' },
+                { brand: 'MT-07', refer: 'MT-07', model: 'MT-07', color: 'BLACK/YELLOW', image: 'imgs/rider5.png' },
+            ]
+        };
+
+        class Vehicle {
+            constructor(brand, refer, model, color, image) {
+                this.brand = brand;
+                this.refer = refer;
+                this.model = model;
+                this.color = color;
+                this.image = image;
+                this.displayData();
+            }
+
+            displayData() {
+                lbrand.textContent = this.brand;
+                lmodel.textContent = this.model;
+                lrefer.textContent = this.refer;
+                lcolor.textContent = this.color;
+                modelImage.style.backgroundImage = `url('${this.image}')`;
+            }
+        }
+
+        let car = new Vehicle(
+            vehicles.attrs[ix].brand,
+            vehicles.attrs[ix].refer,
+            vehicles.attrs[ix].model,
+            vehicles.attrs[ix].color,
+            vehicles.attrs[ix].image
+        );
+
+        nextBtn.addEventListener('click', function () {
+            if (ix < vehicles.attrs.length - 1) {
+                ix++;
+                car.brand = vehicles.attrs[ix].brand;
+                car.refer = vehicles.attrs[ix].refer;
+                car.model = vehicles.attrs[ix].model;
+                car.color = vehicles.attrs[ix].color;
+                car.image = vehicles.attrs[ix].image;
+                car.displayData();
+            }
+        });
+
+        prevBtn.addEventListener('click', function () {
+            if (ix > 0) {
+                ix--;
+                car.brand = vehicles.attrs[ix].brand;
+                car.refer = vehicles.attrs[ix].refer;
+                car.model = vehicles.attrs[ix].model;
+                car.color = vehicles.attrs[ix].color;
+                car.image = vehicles.attrs[ix].image;
+                car.displayData();
+            }
+        });
+
+        // Tema Oscuro / Claro
+        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Función para aplicar el tema y actualizar TODAS las imágenes dependientes
+        const updateTheme = (e) => {
+            const isDark = e.matches;
+            vhc.classList.toggle('dark', isDark);
+
+            mode.style.backgroundImage = isDark ? "url('imgs/mode-dark.svg')" : "url('imgs/mode-light.svg')";
+            prevBtn.style.backgroundImage = isDark ? "url('imgs/prev-dark.svg')" : "url('imgs/prev-light.svg')";
+            nextBtn.style.backgroundImage = isDark ? "url('imgs/next-dark.svg')" : "url('imgs/next-light.svg')";
+            
+            // El paisaje se cambia automáticamente gracias a la regla CSS: #vehicle.dark .landscape
+            // Pero si quisieras forzarlo por JS, sería:
+            // document.querySelector('.landscape').style.backgroundImage = isDark ? "url('imgs/noche.png')" : "url('imgs/dia.png')";
+        };
+
+        darkModeQuery.addEventListener('change', updateTheme);
+        updateTheme(darkModeQuery);
+
+        mode.addEventListener('click', function () {
+            vhc.classList.toggle('dark');
+            const isDark = vhc.classList.contains('dark');
+            
+            mode.style.backgroundImage = isDark ? "url('imgs/mode-dark.svg')" : "url('imgs/mode-light.svg')";
+            prevBtn.style.backgroundImage = isDark ? "url('imgs/prev-dark.svg')" : "url('imgs/prev-light.svg')";
+            nextBtn.style.backgroundImage = isDark ? "url('imgs/next-dark.svg')" : "url('imgs/next-light.svg')";
+        });
+
+        document.getElementById('onBtn').addEventListener('click', () => console.log('ON'));
+        document.getElementById('forwardBtn').addEventListener('click', () => console.log('FORWARD'));
+        document.getElementById('stopBtn').addEventListener('click', () => console.log('STOP'));
+        document.getElementById('backBtn').addEventListener('click', () => console.log('BACK'));
+        document.getElementById('offBtn').addEventListener('click', () => console.log('OFF'));
     </script>
-  </body>
+</body>
 </html>
