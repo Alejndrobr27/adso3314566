@@ -76,35 +76,51 @@
             transform: scale(1.1);
         }
 
-        /* --- LANDSCAPE (Contenedor del paisaje y la moto) --- */
+        /* --- LANDSCAPE: Fondo en movimiento continuo --- */
         .landscape {
             position: relative;
             height: 220px;
             width: 100%;
-            background: url(imgs/dia.png) no-repeat center bottom / cover;
-            transition: background-image 0.3s ease;
             margin-top: 10px;
             border-radius: 8px;
             overflow: hidden;
+            /* Hacemos la imagen de fondo mucho más ancha para que el bucle se vea perfecto */
+            background-image: url(imgs/dia.png);
+            background-repeat: repeat-x;
+            background-size: 200% 100%;
+            /* Animación de derecha a izquierda (la moto avanza) */
+            animation: moveLandscape 8s linear infinite;
         }
 
         #vehicle.dark .landscape {
-            background: url(imgs/noche.png) no-repeat center bottom / cover;
+            background-image: url(imgs/noche.png);
         }
 
-        /* --- MOTO (Más grande y más arriba) --- */
+        /* Definimos el movimiento: de derecha a izquierda */
+        @keyframes moveLandscape {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                /* Se mueve hacia la izquierda */
+                background-position: 200% 50%;
+            }
+        }
+        /* ----------------------------------------------------- */
+
+        /* --- MOTO (Estática, centrada y grande) --- */
         .model {
             position: absolute;
-            bottom: 0px; /* Sube un poco más */
+            bottom: 0px;
             left: 50%;
             transform: translateX(-50%);
             background: url(imgs/rider1.png) no-repeat center / contain;
-            height: 210px; /* Más grande */
-            width: 280px;  /* Ajuste proporcional */
+            height: 210px;
+            width: 280px;
             transition: background-image 0.3s ease;
             z-index: 10;
+            pointer-events: none;
         }
-        /* ----------------------------------------------------- */
 
         /* Textos de info */
         #vehicle .text-data {
@@ -235,7 +251,7 @@
                     </div>
                 </div>
 
-                <!-- LANDSCAPE con la moto DENTRO -->
+                <!-- LANDSCAPE con movimiento automático y moto estática -->
                 <div class="landscape">
                     <figure class="model" id="modelImage"></figure>
                 </div>
