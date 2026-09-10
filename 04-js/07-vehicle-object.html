@@ -7,14 +7,39 @@
     <title>07 - Class Vehicle</title>
     <link rel="stylesheet" href="../src/css/04-js.css">
     <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        main {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        section {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         #vehicle {
             border-radius: 10px;
             background-color: #fbfcfc;
-            height: 576px;
-            padding: 12px;
-            width: 356px;
+            padding: 20px;
+            width: 100%;
+            max-width: 100%;
+            min-height: 576px;
             margin: 0 auto;
             transition: background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            gap: 10px;
         }
 
         #vehicle.dark {
@@ -25,12 +50,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-shrink: 0;
+            padding: 0 10px;
         }
 
         #vehicle>header figure.logo {
-            background: url(imgs/Mt-09.png) no-repeat center / contain;
-            height: 110px;
-            width: 220px;
+            background: url(imgs/Mt-09.png) no-repeat left center / contain;
+            height: 90px;
+            width: 260px;
             margin: 0;
         }
 
@@ -38,8 +65,8 @@
             background: url(imgs/mode-dark.svg) no-repeat center / contain;
             border: none;
             cursor: pointer;
-            height: 70px;
-            width: 120px;
+            height: 65px;
+            width: 110px;
             transition: transform 0.4s ease-in;
         }
 
@@ -47,68 +74,142 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: -25px;
+            flex-shrink: 0;
+            padding: 0 10px;
         }
 
         #vehicle>nav button {
             border: none;
             cursor: pointer;
-            height: 70px;
-            width: 70px;
-            transition: transform 0.4s ease-in;
+            height: 65px;
+            width: 65px;
+            transition: transform 0.4s ease-in, opacity 0.3s ease;
         }
 
         #vehicle>nav button.prev {
             background: url(imgs/prev-light.svg) no-repeat center / contain;
-            height: 100px;
-            width: 90px;
-            margin-left: 10px;
+            height: 70px;
+            width: 70px;
         }
 
         #vehicle>nav button.next {
             background: url(imgs/next-light.svg) no-repeat center / contain;
-            height: 100px;
-            width: 90px;
-            margin-right: 10px;
+            height: 70px;
+            width: 70px;
         }
 
         #vehicle>nav button:hover {
             transform: scale(1.1);
         }
 
-        /* --- LANDSCAPE: Fondo en movimiento continuo --- */
+        #vehicle>nav button.hidden {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        #vehicle>nav figure.brand {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+            text-align: center;
+        }
+
+        #vehicle.dark #vehicle>nav figure.brand { color: #fff; }
+
+        .info-row {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-top: 5px;
+            flex-shrink: 0;
+            padding: 0 10px;
+            gap: 15px;
+        }
+
+        .info-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            background: none;
+            box-shadow: none;
+            padding: 0;
+            height: 130px;
+        }
+
+        #vehicle.dark .info-item {
+            background: none;
+            box-shadow: none;
+        }
+
+        .info-item .value,
+        .info-item .label { display: none; }
+
+        .info-item .icon {
+            width: 140px;
+            height: 105px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transition: background-image 0.3s ease;
+            position: relative;
+        }
+
+        .info-item .icon-model { background-image: url(imgs/model-light.svg); }
+        .info-item .icon-refer { background-image: url(imgs/refer-light.svg); }
+        .info-item .icon-color { background-image: url(imgs/color-light.svg); }
+
+        #vehicle.dark .info-item .icon-model { background-image: url(imgs/model-dark.svg); }
+        #vehicle.dark .info-item .icon-refer { background-image: url(imgs/refer-dark.svg); }
+        #vehicle.dark .info-item .icon-color { background-image: url(imgs/color-dark.svg); }
+
+        #vehicle .text-data {
+            position: absolute;
+            top: 74px;
+            left: 58%;
+            transform: translateX(-50%);
+            width: 90%;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 11px;
+            text-align: center;
+            margin: 0;
+            color: #333;
+            pointer-events: none;
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        #vehicle.dark .text-data { color: #fff; }
+
         .landscape {
             position: relative;
             height: 220px;
             width: 100%;
-            margin-top: 10px;
             border-radius: 8px;
             overflow: hidden;
-            /* Hacemos la imagen de fondo mucho más ancha para que el bucle se vea perfecto */
             background-image: url(imgs/dia.png);
             background-repeat: repeat-x;
             background-size: 200% 100%;
-            /* Animación de derecha a izquierda (la moto avanza) */
             animation: moveLandscape 8s linear infinite;
+            animation-play-state: paused;
+            flex-shrink: 0;
         }
 
         #vehicle.dark .landscape {
             background-image: url(imgs/noche.png);
         }
 
-        /* Definimos el movimiento: de derecha a izquierda */
         @keyframes moveLandscape {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                /* Se mueve hacia la izquierda */
-                background-position: 200% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
-        /* ----------------------------------------------------- */
 
-        /* --- MOTO (Estática, centrada y grande) --- */
         .model {
             position: absolute;
             bottom: 0px;
@@ -122,87 +223,83 @@
             pointer-events: none;
         }
 
-        /* Textos de info */
-        #vehicle .text-data {
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            margin: 5px 0;
-            color: #333;
-        }
-        #vehicle.dark .text-data { color: #fff; }
-
-        .info-row {
+        .controls-row {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 5px;
             align-items: center;
+            gap: 30px;
+            margin-top: auto;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+            padding: 0 10px;
         }
 
-        .info-item {
+        .controls-row button {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.2s ease, opacity 0.3s ease;
         }
 
-        .info-item .value, .info-item .label {
+        .controls-row button:hover:not(:disabled) {
+            transform: scale(1.12);
+        }
+
+        .controls-row button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .controls-row button span {
             display: none;
         }
 
-        .info-item .icon {
-            width: 110px;
-            height: 80px;
+        .controls-row button .btn-icon {
+            display: block;
+            width: 70px;
+            height: 70px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
             transition: background-image 0.3s ease;
         }
 
-        .info-item .icon-model { background-image: url(imgs/model-light.svg); }
-        .info-item .icon-refer { background-image: url(imgs/refer-light.svg); }
-        .info-item .icon-color { background-image: url(imgs/color-light.svg); }
+        .controls-row button.btn-on .btn-icon { background-image: url('imgs/btn-on-light.svg'); }
+        .controls-row button.btn-forward .btn-icon { background-image: url('imgs/btn-forward-light.svg'); }
+        .controls-row button.btn-stop .btn-icon { background-image: url('imgs/btn-stop-light.svg'); }
+        .controls-row button.btn-back .btn-icon { background-image: url('imgs/btn-back.light.svg'); }
+        .controls-row button.btn-off .btn-icon { background-image: url('imgs/btn-off-light.svg'); }
 
-        #vehicle.dark .info-item .icon-model { background-image: url(imgs/model-dark.svg); }
-        #vehicle.dark .info-item .icon-refer { background-image: url(imgs/refer-dark.svg); }
-        #vehicle.dark .info-item .icon-color { background-image: url(imgs/color-dark.svg); }
-
-        .controls-row {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .controls-row button {
-            background: none;
-            border: none;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 12px;
-            color: #333;
-            cursor: pointer;
-            padding: 5px 8px;
-            transition: color 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        #vehicle.dark .controls-row button { color: #fff; }
-        .controls-row button:hover { color: #007bff; }
-        #vehicle.dark .controls-row button:hover { color: #4da3ff; }
-
-        #vehicle>nav figure.brand {
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 22px;
-            color: #333;
-            margin: 0;
-        }
-
-        #vehicle.dark #vehicle>nav figure.brand { color: #fff; }
+        #vehicle.dark .controls-row button.btn-on .btn-icon { background-image: url('imgs/btn-on-dark.svg'); }
+        #vehicle.dark .controls-row button.btn-forward .btn-icon { background-image: url('imgs/btn-forward-dark.svg'); }
+        #vehicle.dark .controls-row button.btn-stop .btn-icon { background-image: url('imgs/btn-stop-dark.svg'); }
+        #vehicle.dark .controls-row button.btn-back .btn-icon { background-image: url('imgs/btn-back-dark.svg'); }
+        #vehicle.dark .controls-row button.btn-off .btn-icon { background-image: url('imgs/btn-off-dark.svg'); }
 
         .reference, .color { display: none; }
+
+        .landscape.paused { animation-play-state: paused; }
+        .landscape.reverse { animation-direction: reverse; }
+        .landscape.running { animation-play-state: running; }
+
+        @media (max-width: 600px) {
+            section { padding: 0 8px; }
+            #vehicle { padding: 12px; gap: 6px; }
+            #vehicle>header figure.logo { height: 60px; width: 180px; }
+            #vehicle>header button.mode { height: 50px; width: 80px; }
+            #vehicle>nav figure.brand { font-size: 18px; }
+            .info-item { height: 105px; }
+            .info-item .icon { width: 95px; height: 75px; }
+            #vehicle .text-data { font-size: 10px; top: 52px; left: 58%; }
+            .landscape { height: 160px; }
+            .model { height: 150px; width: 200px; }
+            .controls-row { gap: 12px; }
+            .controls-row button .btn-icon { width: 48px; height: 48px; }
+        }
     </style>
 </head>
 
@@ -231,19 +328,18 @@
 
                 <nav>
                     <button class="prev" id="prevBtn" aria-label="Previous"></button>
-                    <figure class="brand" id="brandLabel">MT-09 TRACER</figure>
+                    <figure class="brand" id="brandLabel">MT-09</figure>
                     <button class="next" id="nextBtn" aria-label="Next"></button>
                 </nav>
 
-                <!-- INFORMACIÓN -->
                 <div class="info-row">
                     <div class="info-item">
                         <div class="icon icon-model"></div>
-                        <div class="text-data" id="modelText">MT-09 TRACER</div>
+                        <div class="text-data" id="modelText">MT-09</div>
                     </div>
                     <div class="info-item">
                         <div class="icon icon-refer"></div>
-                        <div class="text-data" id="referText">TRACER 900 GT</div>
+                        <div class="text-data" id="referText">MT-09</div>
                     </div>
                     <div class="info-item">
                         <div class="icon icon-color"></div>
@@ -251,17 +347,26 @@
                     </div>
                 </div>
 
-                <!-- LANDSCAPE con movimiento automático y moto estática -->
-                <div class="landscape">
+                <div class="landscape" id="landscape">
                     <figure class="model" id="modelImage"></figure>
                 </div>
 
                 <div class="controls-row">
-                    <button id="onBtn">ON</button>
-                    <button id="forwardBtn">FORWARD</button>
-                    <button id="stopBtn">STOP</button>
-                    <button id="backBtn">BACK</button>
-                    <button id="offBtn">OFF</button>
+                    <button class="btn-on" id="onBtn" title="ON">
+                        <span class="btn-icon"></span>
+                    </button>
+                    <button class="btn-forward" id="forwardBtn" title="FORWARD">
+                        <span class="btn-icon"></span>
+                    </button>
+                    <button class="btn-stop" id="stopBtn" title="STOP">
+                        <span class="btn-icon"></span>
+                    </button>
+                    <button class="btn-back" id="backBtn" title="BACK">
+                        <span class="btn-icon"></span>
+                    </button>
+                    <button class="btn-off" id="offBtn" title="OFF">
+                        <span class="btn-icon"></span>
+                    </button>
                 </div>
 
                 <figure class="reference" style="display:none;">YAM-2024</figure>
@@ -269,6 +374,7 @@
 
             </div>
         </section>
+        
     </main>
 
     <script>
@@ -276,6 +382,7 @@
         const mode = document.getElementById('modeToggle');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
+        const landscape = document.getElementById('landscape');
 
         const lbrand = document.querySelector('.brand');
         const lmodel = document.getElementById('modelText');
@@ -283,14 +390,20 @@
         const lcolor = document.getElementById('colorText');
         const modelImage = document.getElementById('modelImage');
 
+        const onBtn = document.getElementById('onBtn');
+        const forwardBtn = document.getElementById('forwardBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const backBtn = document.getElementById('backBtn');
+        const offBtn = document.getElementById('offBtn');
+
         let ix = 0;
 
         const vehicles = {
             attrs: [
-                { brand: 'MT-09 TRACER', refer: 'TRACER 900 GT', model: 'MT-09', color: 'BLUE/BLACK', image: 'imgs/rider1.png' },
+                { brand: 'MT-09', refer: 'MT-09', model: 'MT-09', color: 'BLUE/BLACK', image: 'imgs/rider1.png' },
                 { brand: 'R6', refer: 'YZF-R6', model: 'R6', color: 'BLUE/WHITE', image: 'imgs/rider2.png' },
                 { brand: 'R1', refer: 'YZF-R1', model: 'R1', color: 'BLACK/BLUE', image: 'imgs/rider3.png' },
-                { brand: 'XJ6', refer: 'XJ6 DIVERSION', model: 'XJ6', color: 'WHITE/RED', image: 'imgs/rider4.png' },
+                { brand: 'XJ6', refer: 'XJ6', model: 'XJ6', color: 'WHITE/RED', image: 'imgs/rider4.png' },
                 { brand: 'MT-07', refer: 'MT-07', model: 'MT-07', color: 'BLACK/YELLOW', image: 'imgs/rider5.png' },
             ]
         };
@@ -322,6 +435,116 @@
             vehicles.attrs[ix].image
         );
 
+        let vehicleState = 'off';
+
+        function stopAnimation() {
+            landscape.classList.add('paused');
+            landscape.classList.remove('running');
+            landscape.classList.remove('reverse');
+        }
+
+        function updateButtonsState() {
+            onBtn.disabled = true;
+            forwardBtn.disabled = true;
+            stopBtn.disabled = true;
+            backBtn.disabled = true;
+            offBtn.disabled = true;
+
+            switch (vehicleState) {
+                case 'off':
+                    onBtn.disabled = false;
+                    break;
+
+                case 'on':
+                    forwardBtn.disabled = false;
+                    backBtn.disabled = false;
+                    break;
+
+                case 'forward':
+                    stopBtn.disabled = false;
+                    break;
+
+                case 'stop':
+                    forwardBtn.disabled = false;
+                    backBtn.disabled = false;
+                    offBtn.disabled = false;
+                    break;
+
+                case 'back':
+                    stopBtn.disabled = false;
+                    break;
+            }
+        }
+
+        function vibrate() {
+            if (vehicleState !== 'on' && vehicleState !== 'stop') return
+
+            modelImage.style.transform = `translateX(-50%) translateY(${1.5 * Math.sin(Date.now() / 15)}px)`
+            requestAnimationFrame(vibrate)
+        }
+
+        onBtn.addEventListener('click', function () {
+            if (vehicleState !== 'off') return;
+            vehicleState = 'on';
+            stopAnimation();
+            updateButtonsState();
+            vibrate();
+        });
+
+        forwardBtn.addEventListener('click', function () {
+            if (vehicleState !== 'on' && vehicleState !== 'stop') return;
+            vehicleState = 'forward';
+            landscape.classList.remove('paused');
+            landscape.classList.remove('reverse');
+            landscape.classList.add('running');
+            modelImage.style.transform = 'translateX(-50%)';
+            updateButtonsState();
+        });
+
+        stopBtn.addEventListener('click', function () {
+            if (vehicleState !== 'forward' && vehicleState !== 'back') return;
+            vehicleState = 'stop';
+            stopAnimation();
+            updateButtonsState();
+            vibrate();
+        });
+
+        backBtn.addEventListener('click', function () {
+            if (vehicleState !== 'stop' && vehicleState !== 'on') return;
+            vehicleState = 'back';
+            landscape.classList.remove('paused');
+            landscape.classList.add('running');
+            landscape.classList.add('reverse');
+            modelImage.style.transform = 'translateX(-50%)';
+            updateButtonsState();
+        });
+
+        offBtn.addEventListener('click', function () {
+            if (vehicleState !== 'stop') return;
+            vehicleState = 'off';
+            stopAnimation();
+            modelImage.style.transform = 'translateX(-50%)';
+            updateButtonsState();
+        });
+
+        updateButtonsState();
+
+        function updateNavButtons() {
+            if (ix === 0) {
+                prevBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+            }
+
+            if (ix === vehicles.attrs.length - 1) {
+                nextBtn.classList.add('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+            }
+        }
+
+        updateNavButtons();
+
         nextBtn.addEventListener('click', function () {
             if (ix < vehicles.attrs.length - 1) {
                 ix++;
@@ -331,6 +554,7 @@
                 car.color = vehicles.attrs[ix].color;
                 car.image = vehicles.attrs[ix].image;
                 car.displayData();
+                updateNavButtons();
             }
         });
 
@@ -343,10 +567,10 @@
                 car.color = vehicles.attrs[ix].color;
                 car.image = vehicles.attrs[ix].image;
                 car.displayData();
+                updateNavButtons();
             }
         });
 
-        // Tema Oscuro / Claro
         const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
         
         const updateTheme = (e) => {
@@ -369,12 +593,6 @@
             prevBtn.style.backgroundImage = isDark ? "url('imgs/prev-dark.svg')" : "url('imgs/prev-light.svg')";
             nextBtn.style.backgroundImage = isDark ? "url('imgs/next-dark.svg')" : "url('imgs/next-light.svg')";
         });
-
-        document.getElementById('onBtn').addEventListener('click', () => console.log('ON'));
-        document.getElementById('forwardBtn').addEventListener('click', () => console.log('FORWARD'));
-        document.getElementById('stopBtn').addEventListener('click', () => console.log('STOP'));
-        document.getElementById('backBtn').addEventListener('click', () => console.log('BACK'));
-        document.getElementById('offBtn').addEventListener('click', () => console.log('OFF'));
     </script>
 </body>
 </html>
